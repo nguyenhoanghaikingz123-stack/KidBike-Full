@@ -1,0 +1,85 @@
+a{
+    text-decoration: none;
+}
+
+
+/* Thiết lập Font chữ toàn cục */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #fcfcfc;
+}
+
+/* Đổi màu Primary mặc định của Bootstrap sang màu xanh hợp với trẻ em hơn */
+.text-primary { color: #007bff !important; }
+.bg-primary { background-color: #007bff !important; }
+.btn-primary { 
+    background-color: #007bff; 
+    border-color: #007bff; 
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Hero Banner */
+.hero-banner {
+    min-height: 500px;
+    background: url('https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    position: relative;
+}
+/* Phủ một lớp màu trắng mờ lên ảnh nền cho dễ đọc chữ */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.85);
+}
+.hero-banner .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hiệu ứng Hover cho Card Danh mục & Sản phẩm */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+/* Ép ảnh sản phẩm có kích thước đều nhau */
+.product-card img {
+    height: 200px;
+    object-fit: contain;
+    background-color: #f8f9fa;
+}
+
+/* Custom Input Number (Bỏ 2 mũi tên mặc định của input type="number") */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Ảnh thumbnail trong trang chi tiết */
+.img-thumbnail {
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+.img-thumbnail:hover {
+    border-color: #007bff;
+    transform: translateY(-2px);
+}
