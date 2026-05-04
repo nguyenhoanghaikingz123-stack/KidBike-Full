@@ -1,4 +1,4 @@
-<?php 
+<?php
   // Lấy 4 sản phẩm mới nhất / nổi bật nhất từ CSDL
   $s_featured = "SELECT * FROM tbl_product 
                  JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id
@@ -25,10 +25,10 @@
           kế đầy màu sắc, phù hợp mọi lứa tuổi từ 2–14 tuổi.
         </p>
         <div class="hero-actions">
-          <a href="products.php" class="btn btn-primary">
+          <a href="index.php?page=products" class="btn btn-primary">
             <i class="fas fa-bicycle"></i> Xem sản phẩm
           </a>
-          <a href="about.php" class="btn btn-outline"> Tìm hiểu thêm </a>
+          <a href="index.php?page=about" class="btn btn-outline"> Tìm hiểu thêm </a>
         </div>
         <div class="hero-stats">
           <div class="stat">
@@ -114,7 +114,7 @@
       </div>
       <div class="category-grid">
         <a
-          href="products.php?cat=2-4"
+          href="index.php?page=products"
           class="category-card fade-up"
           style="--cat-color: #ff6b35">
           <div class="cat-icon">🏍️</div>
@@ -126,7 +126,7 @@
           <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
         </a>
         <a
-          href="products.php?cat=4-6"
+          href="index.php?page=products"
           class="category-card fade-up fade-up-delay-1"
           style="--cat-color: #4ecdc4">
           <div class="cat-icon">🚲</div>
@@ -138,7 +138,7 @@
           <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
         </a>
         <a
-          href="products.php?cat=6-10"
+          href="index.php?page=products"
           class="category-card fade-up fade-up-delay-2"
           style="--cat-color: #c3b1e1">
           <div class="cat-icon">🚵</div>
@@ -150,7 +150,7 @@
           <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
         </a>
         <a
-          href="products.php?cat=10-14"
+          href="index.php?page=products"
           class="category-card fade-up fade-up-delay-3"
           style="--cat-color: #ffe66d">
           <div class="cat-icon">🏆</div>

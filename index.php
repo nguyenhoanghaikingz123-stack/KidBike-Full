@@ -46,6 +46,7 @@ include_once('admin/connect.php');
       case 'search': include_once('search.php'); break;
       case 'cart': include_once('cart.php'); break;
       case 'about': include_once('about.php'); break;
+      case 'contact': include_once('contact.php'); break;
       default: include_once('dashboard.php'); break;
     }
   } else {

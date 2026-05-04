@@ -1,9 +1,9 @@
-<?php 
+<?php
 $s_cate = "SELECT * FROM tbl_category ORDER BY cate_id ASC LIMIT 4";
 $q_cate = mysqli_query($connect, $s_cate);
 
-// Lấy trang hiện tại, mặc định là 'index'
-$current_page = isset($_GET['page']) ? $_GET['page'] : 'index';
+
+$current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 ?>
 
 <nav class="navbar">
@@ -12,7 +12,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'index';
       Kids<span>Bike</span>
     </a>
     <ul class="nav-menu">
-      <li><a href="index.php" class="nav-link <?= (!isset($_GET['page']) || $_GET['page'] == 'index') ? 'active' : '' ?>">Trang chủ</a></li>
+      <li><a href="index.php?page=dashboard" class="nav-link <?= ($current_page == 'dashboard') ? 'active' : '' ?>">Trang chủ</a></li>
       <li><a href="index.php?page=about" class="nav-link <?= ($current_page == 'about') ? 'active' : '' ?>">Giới thiệu</a></li>
       <li><a href="index.php?page=products" class="nav-link <?= ($current_page == 'products' || $current_page == 'product-detail') ? 'active' : '' ?>">Sản phẩm</a></li>
       <li><a href="index.php?page=contact" class="nav-link <?= ($current_page == 'contact') ? 'active' : '' ?>">Liên hệ</a></li>
