@@ -1,8 +1,23 @@
 <?php
 
+// 1.Xac dinh so luong ban ghi hien thi tren 1 trang
+$row_per_page = 12;
+// 2.Tinh vi tri lay ban ghi dau
+// 2.1 dem tong so ban ghi trong csdl
+$total_row = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tbl_product 
+            JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id"));
+// 2.2: Tính tổng số page
+$total_page = ceil($total_row / $row_per_page);
+//2.3: Tim gia tri cua page
+$page = 1;
+
+
+//Tim vi tri lay ban ghi
+$per_row = ($page * $row_per_page) - $row_per_page;
+
 $s_prd = "SELECT * FROM tbl_product 
             JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id
-            ORDER BY prd_id ASC LIMIT 12";
+            ORDER BY prd_id ASC LIMIT $per_row, $row_per_page";
 $q_prd = mysqli_query($connect, $s_prd);
 ?>
 
@@ -184,7 +199,32 @@ $q_prd = mysqli_query($connect, $s_prd);
         </div>
         <!-- End Add Product -->
 
-        <div class="pagination" id="pagination"></div>
+        <div class="pagination" id="pagination">
+          <?php
+          // Nút "Trang trước" (Chỉ hiện khi không phải trang 1)
+          if ($page > 1) {
+            $prev_page = $page - 1;
+            echo '<a href="index.php?page=products&p=' . $prev_page . '" class="page-btn" style="text-decoration:none;"><i class="fas fa-chevron-left"></i></a>';
+          }
+
+          // Vòng lặp in ra các số trang
+          for ($i = 1; $i <= $total_page; $i++) {
+            if ($i == $page) {
+              // Tô đậm/đánh dấu trang hiện tại (active)
+              echo '<a href="index.php?page=products&p=' . $i . '" class="page-btn active" style="text-decoration:none;">' . $i . '</a>';
+            } else {
+              // Các trang khác
+              echo '<a href="index.php?page=products&p=' . $i . '" class="page-btn" style="text-decoration:none;">' . $i . '</a>';
+            }
+          }
+
+          // Nút "Trang sau" (Chỉ hiện khi chưa tới trang cuối)
+          if ($page < $total_page) {
+            $next_page = $page + 1;
+            echo '<a href="index.php?page=products&p=' . $next_page . '" class="page-btn" style="text-decoration:none;"><i class="fas fa-chevron-right"></i></a>';
+          }
+          ?>
+        </div>
     </div>
   </div>
   </div>

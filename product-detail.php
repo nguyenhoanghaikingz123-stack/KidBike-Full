@@ -23,8 +23,8 @@ if(isset($_GET['prd_id'])){
 <section class="section">
   <div class="container">
     <div class="breadcrumb" style="margin-bottom:2rem;">
-      <a href="index.html">Trang chủ</a><span>/</span>
-      <a href="products.html">Sản phẩm</a><span>/</span>
+      <a href="index.php">Trang chủ</a><span>/</span>
+      <a href="index.php?page=products">Sản phẩm</a><span>/</span>
       <span id="pdBreadcrumb">Chi tiết sản phẩm</span>
     </div>
 
@@ -66,7 +66,7 @@ if(isset($_GET['prd_id'])){
           </div>
         </div>
 
-        <div class="pd-size">
+        <!-- <div class="pd-size">
           <h4>Cỡ bánh xe:</h4>
           <div class="size-options">
             <button class="size-opt active" onclick="selectSize(this)">12"</button>
@@ -74,7 +74,7 @@ if(isset($_GET['prd_id'])){
             <button class="size-opt" onclick="selectSize(this)">16"</button>
             <button class="size-opt" onclick="selectSize(this)">20"</button>
           </div>
-        </div>
+        </div> -->
 
         <div class="pd-qty">
           <h4>Số lượng:</h4>
@@ -182,6 +182,6 @@ if(isset($_GET['prd_id'])){
 
 
 <script src="js/common.js"></script>
-<script src="js/product-detail.js"></script>
+
 </body>
 
