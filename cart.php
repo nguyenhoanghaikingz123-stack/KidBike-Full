@@ -1,4 +1,15 @@
+<?php
+//$ids = '';
+foreach ($_SESSION['cart'] as $item => $quantity){
+  //$ids .= $item . ", ";
+  $arr_id[] = $item;
+}
+$ids = implode(', ', $arr_id);
+$sql = "SELECT * FROM tbl_product WHERE `prd_id` IN($ids)";
+$query = mysqli_query($connect, $sql);
 
+
+?>
 
 <div class="page-hero">
   <div class="container">
@@ -15,7 +26,7 @@
       <div class="empty-icon">🛒</div>
       <h2>Giỏ hàng của bạn đang trống</h2>
       <p>Hãy thêm những chiếc xe đạp tuyệt vời vào giỏ hàng nhé!</p>
-      <a href="products.html" class="btn btn-primary"><i class="fas fa-bicycle"></i> Mua sắm ngay</a>
+      <a href="index.php?page=products" class="btn btn-primary"><i class="fas fa-bicycle"></i> Mua sắm ngay</a>
     </div>
 
     <!-- CART CONTENT -->
@@ -29,10 +40,38 @@
           <span>Thành tiền</span>
           <span></span>
         </div>
-        <div id="cartItemsList"></div>
+        <div id="cartItemsList">
+<?php
+if (!empty($products)) {
+    foreach ($products as $product) {
+        $quantity = $product['quantity'];
+        $total = $product['prd_price'] * $quantity;
+        ?>
+        <div class="cart-item fade-up" id="item-<?php echo $product['prd_id']; ?>">
+            <div class="cart-item-info">
+                <div class="cart-item-emoji">🚲</div>
+                <div>
+                    <div class="cart-item-name"><?php echo htmlspecialchars($product['prd_name']); ?></div>
+                    <div class="cart-item-meta">Màu: <?php echo htmlspecialchars($product['prd_color'] ?? 'Cam'); ?> · Cỡ: <?php echo htmlspecialchars($product['prd_size'] ?? '16"'); ?></div>
+                </div>
+            </div>
+            <div class="cart-item-price"><?php echo number_format($product['prd_price'],0,',','.'); ?>đ</div>
+            <div class="cart-qty">
+                <button onclick="changeCartQty(<?php echo $product['prd_id']; ?>, -1)">−</button>
+                <input type="number" value="<?php echo $quantity; ?>" min="1" max="10" onchange="setCartQty(<?php echo $product['prd_id']; ?>, this.value)" />
+                <button onclick="changeCartQty(<?php echo $product['prd_id']; ?>, 1)">+</button>
+            </div>
+            <div class="cart-item-total"><?php echo number_format($total,0,',','.'); ?>đ</div>
+            <button class="cart-item-remove" onclick="handleRemove(<?php echo $product['prd_id']; ?>)" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        <?php
+    }
+}
+?>
+</div>
 
         <div class="cart-footer-actions">
-          <a href="products.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Tiếp tục mua</a>
+          <a href="index.php?page=products" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Tiếp tục mua</a>
           <button class="btn btn-outline" onclick="clearAllCart()" style="color:var(--gray); border-color:var(--gray);">
             <i class="fas fa-trash"></i> Xóa tất cả
           </button>
@@ -105,6 +144,6 @@
 
 
 <script src="js/common.js"></script>
-<script src="js/cart.js"></script>
+
 </body>
 

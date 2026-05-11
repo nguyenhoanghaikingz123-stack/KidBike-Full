@@ -76,27 +76,31 @@ if(isset($_GET['prd_id'])){
           </div>
         </div> -->
 
-        <div class="pd-qty">
-          <h4>Số lượng:</h4>
-          <div class="qty-control">
-            <button onclick="changeQty(-1)">−</button>
-            <input type="number" value="1" min="1" max="10" id="qtyInput" />
-            <button onclick="changeQty(1)">+</button>
-          </div>
-          <span class="stock-info">✅ Còn hàng</span>
-        </div>
+        <form action="add_cart.php" method="post" id="addCartForm">
+  <input type="hidden" name="action" value="add">
+  <input type="hidden" name="prd_id" value="<?= $product['prd_id'] ?>">
+  <div class="pd-qty">
+    <h4>Số lượng:</h4>
+    <div class="qty-control">
+      <button type="button" onclick="changeQty(-1)">−</button>
+      <input type="number" name="prd_quantity" value="1" min="1" max="<?= $product['prd_quantity'] ?>" id="qtyInput" />
+      <button type="button" onclick="changeQty(1)">+</button>
+    </div>
+    <span class="stock-info">✅ Còn hàng</span>
+  </div>
 
-        <div class="pd-actions">
-          <button class="btn btn-primary btn-lg" onclick="handleAddToCart()">
-            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
-          </button>
-          <button class="btn btn-secondary btn-lg" onclick="handleBuyNow()">
-            <i class="fas fa-bolt"></i> Mua ngay
-          </button>
-          <button class="btn-wish" id="wishBtn" onclick="handleWish()">
-            <i class="fas fa-heart"></i>
-          </button>
-        </div>
+  <div class="pd-actions">
+    <button type="submit" class="btn btn-primary btn-lg">
+      <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+    </button>
+    <button class="btn btn-secondary btn-lg" onclick="handleBuyNow(<?= $product['prd_id'] ?>)">
+      <i class="fas fa-bolt"></i> Mua ngay
+    </button>
+    <button class="btn-wish" id="wishBtn" onclick="handleWish()">
+      <i class="fas fa-heart"></i>
+    </button>
+  </div>
+</form>
 
         <div class="pd-guarantees">
           <div class="guarantee-item"><i class="fas fa-shield-alt"></i> Bảo hành 24 tháng</div>
