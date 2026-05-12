@@ -1,4 +1,23 @@
 <?php
+
+// 1.Xac dinh so luong ban ghi hien thi tren 1 trang
+$row_per_page = 12;
+// 2.Tinh vi tri lay ban ghi dau
+// 2.1 dem tong so ban ghi trong csdl
+$total_row = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tbl_product 
+            JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id"));
+// 2.2: Tính tổng số page
+$total_page = ceil($total_row / $row_per_page);
+//2.3: Tim gia tri cua page
+$page = 1;
+
+
+//Tim vi tri lay ban ghi
+$per_row = ($page * $row_per_page) - $row_per_page;
+
+$s_prd = "SELECT * FROM tbl_product 
+            JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id
+            ORDER BY prd_id ASC LIMIT $per_row, $row_per_page";
 include_once(__DIR__ . "/admin/connect.php");
 
 // Phân trang
@@ -19,85 +38,85 @@ $params = [];
 
 // Filter theo danh mục
 if (isset($_GET['cat']) && $_GET['cat'] !== 'all') {
-    $cat_ids = explode(',', $_GET['cat']);
-    $cat_placeholders = implode(',', array_fill(0, count($cat_ids), '?'));
-    $sql_conditions[] = "p.cate_id IN (" . implode(',', $cat_ids) . ")";
-    $params[] = "cat=" . $_GET['cat'];
+  $cat_ids = explode(',', $_GET['cat']);
+  $cat_placeholders = implode(',', array_fill(0, count($cat_ids), '?'));
+  $sql_conditions[] = "p.cate_id IN (" . implode(',', $cat_ids) . ")";
+  $params[] = "cat=" . $_GET['cat'];
 }
 
 // Filter theo độ tuổi
 if (isset($_GET['age'])) {
-    $age_ranges = explode(',', $_GET['age']);
-    $age_conditions = [];
-    foreach ($age_ranges as $range) {
-        switch ($range) {
-            case '2-4':
-                $age_conditions[] = "(p.prd_price BETWEEN 500000 AND 1500000)";
-                break;
-            case '4-6':
-                $age_conditions[] = "(p.prd_price BETWEEN 800000 AND 2500000)";
-                break;
-            case '6-10':
-                $age_conditions[] = "(p.prd_price BETWEEN 1000000 AND 3500000)";
-                break;
-            case '10-14':
-                $age_conditions[] = "(p.prd_price BETWEEN 2000000 AND 5000000)";
-                break;
-        }
+  $age_ranges = explode(',', $_GET['age']);
+  $age_conditions = [];
+  foreach ($age_ranges as $range) {
+    switch ($range) {
+      case '2-4':
+        $age_conditions[] = "(p.prd_price BETWEEN 500000 AND 1500000)";
+        break;
+      case '4-6':
+        $age_conditions[] = "(p.prd_price BETWEEN 800000 AND 2500000)";
+        break;
+      case '6-10':
+        $age_conditions[] = "(p.prd_price BETWEEN 1000000 AND 3500000)";
+        break;
+      case '10-14':
+        $age_conditions[] = "(p.prd_price BETWEEN 2000000 AND 5000000)";
+        break;
     }
-    if (!empty($age_conditions)) {
-        $sql_conditions[] = "(" . implode(' OR ', $age_conditions) . ")";
-        $params[] = "age=" . $_GET['age'];
-    }
+  }
+  if (!empty($age_conditions)) {
+    $sql_conditions[] = "(" . implode(' OR ', $age_conditions) . ")";
+    $params[] = "age=" . $_GET['age'];
+  }
 }
 
 // Filter theo tính năng
 if (isset($_GET['feature'])) {
-    $features = explode(',', $_GET['feature']);
-    $feature_conditions = [];
-    foreach ($features as $feature) {
-        switch ($feature) {
-            case 'giam-xe':
-                $feature_conditions[] = "p.prd_name LIKE '%giảm xóc%'";
-                break;
-            case 'phanh-thep':
-                $feature_conditions[] = "p.prd_name LIKE '%phanh thép%'";
-                break;
-            case 'den-hoa':
-                $feature_conditions[] = "p.prd_name LIKE '%đèn hoa%'";
-                break;
-            case 'tui-xe':
-                $feature_conditions[] = "p.prd_name LIKE '%túi xe%'";
-                break;
-        }
+  $features = explode(',', $_GET['feature']);
+  $feature_conditions = [];
+  foreach ($features as $feature) {
+    switch ($feature) {
+      case 'giam-xe':
+        $feature_conditions[] = "p.prd_name LIKE '%giảm xóc%'";
+        break;
+      case 'phanh-thep':
+        $feature_conditions[] = "p.prd_name LIKE '%phanh thép%'";
+        break;
+      case 'den-hoa':
+        $feature_conditions[] = "p.prd_name LIKE '%đèn hoa%'";
+        break;
+      case 'tui-xe':
+        $feature_conditions[] = "p.prd_name LIKE '%túi xe%'";
+        break;
     }
-    if (!empty($feature_conditions)) {
-        $sql_conditions[] = "(" . implode(' OR ', $feature_conditions) . ")";
-        $params[] = "feature=" . $_GET['feature'];
-    }
+  }
+  if (!empty($feature_conditions)) {
+    $sql_conditions[] = "(" . implode(' OR ', $feature_conditions) . ")";
+    $params[] = "feature=" . $_GET['feature'];
+  }
 }
 
 // Filter theo khoảng giá
 if (isset($_GET['priceMin']) || isset($_GET['priceMax'])) {
-    $price_conditions = [];
-    if (isset($_GET['priceMin']) && is_numeric($_GET['priceMin'])) {
-        $price_conditions[] = "p.prd_price >= " . intval($_GET['priceMin']);
-        $params[] = "priceMin=" . $_GET['priceMin'];
-    }
-    if (isset($_GET['priceMax']) && is_numeric($_GET['priceMax'])) {
-        $price_conditions[] = "p.prd_price <= " . intval($_GET['priceMax']);
-        $params[] = "priceMax=" . $_GET['priceMax'];
-    }
-    if (!empty($price_conditions)) {
-        $sql_conditions[] = "(" . implode(' AND ', $price_conditions) . ")";
-    }
+  $price_conditions = [];
+  if (isset($_GET['priceMin']) && is_numeric($_GET['priceMin'])) {
+    $price_conditions[] = "p.prd_price >= " . intval($_GET['priceMin']);
+    $params[] = "priceMin=" . $_GET['priceMin'];
+  }
+  if (isset($_GET['priceMax']) && is_numeric($_GET['priceMax'])) {
+    $price_conditions[] = "p.prd_price <= " . intval($_GET['priceMax']);
+    $params[] = "priceMax=" . $_GET['priceMax'];
+  }
+  if (!empty($price_conditions)) {
+    $sql_conditions[] = "(" . implode(' AND ', $price_conditions) . ")";
+  }
 }
 
 // Filter theo đánh giá (giả định có cột rating)
 if (isset($_GET['rating']) && $_GET['rating'] !== '0') {
-    $rating_value = floatval($_GET['rating']);
-    $sql_conditions[] = "p.prd_price >= " . ($rating_value * 500000) . " AND p.prd_price <= " . (($rating_value + 1) * 500000);
-    $params[] = "rating=" . $_GET['rating'];
+  $rating_value = floatval($_GET['rating']);
+  $sql_conditions[] = "p.prd_price >= " . ($rating_value * 500000) . " AND p.prd_price <= " . (($rating_value + 1) * 500000);
+  $params[] = "rating=" . $_GET['rating'];
 }
 
 // Xây dựng query hoàn chỉnh
@@ -105,31 +124,31 @@ $where_clause = !empty($sql_conditions) ? " WHERE " . implode(' AND ', $sql_cond
 $order_by = " ORDER BY prd_id ASC";
 
 if (isset($_GET['sort'])) {
-    switch ($_GET['sort']) {
-        case 'price-asc':
-            $order_by = " ORDER BY p.prd_price ASC";
-            break;
-        case 'price-desc':
-            $order_by = " ORDER BY p.prd_price DESC";
-            break;
-        case 'rating':
-            $order_by = " ORDER BY p.prd_price DESC";
-            break;
-        case 'newest':
-            $order_by = " ORDER BY p.prd_id DESC";
-            break;
-        default:
-            $order_by = " ORDER BY prd_id ASC";
-    }
-    $params[] = "sort=" . $_GET['sort'];
+  switch ($_GET['sort']) {
+    case 'price-asc':
+      $order_by = " ORDER BY p.prd_price ASC";
+      break;
+    case 'price-desc':
+      $order_by = " ORDER BY p.prd_price DESC";
+      break;
+    case 'rating':
+      $order_by = " ORDER BY p.prd_price DESC";
+      break;
+    case 'newest':
+      $order_by = " ORDER BY p.prd_id DESC";
+      break;
+    default:
+      $order_by = " ORDER BY prd_id ASC";
+  }
+  $params[] = "sort=" . $_GET['sort'];
 }
 
 // Query cuối cùng
 $s_prd = "SELECT p.*, c.cate_name FROM tbl_product p 
-          JOIN tbl_category c ON p.cate_id = c.cate_id" . 
-          $where_clause . 
-          $order_by . 
-          " LIMIT $start, $per_page";
+          JOIN tbl_category c ON p.cate_id = c.cate_id" .
+  $where_clause .
+  $order_by .
+  " LIMIT $start, $per_page";
 $q_prd = mysqli_query($connect, $s_prd);
 ?>
 
@@ -310,94 +329,123 @@ $q_prd = mysqli_query($connect, $s_prd);
             </div>
           </div>
         </div>
-        
+
         <!-- Products Grid -->
         <div class="products-grid">
           <?php
           // Kiểm tra có sản phẩm không
           if (mysqli_num_rows($q_prd) > 0) {
-              // Duyệt dữ liệu từ CSDL
-              while ($row = mysqli_fetch_array($q_prd)) {
-                  // Xây dựng đường dẫn ảnh
-                  $image_path = "admin/assets/images/products/" . $row['prd_image'];
+            // Duyệt dữ liệu từ CSDL
+            while ($row = mysqli_fetch_array($q_prd)) {
+              // Xây dựng đường dẫn ảnh
+              $image_path = "admin/assets/images/products/" . $row['prd_image'];
           ?>
-            <div class="product-card fade-up">
-              <!-- Link đến chi tiết sản phẩm -->
-              <a href="index.php?page=product-detail&prd_id=<?= $row['prd_id'] ?>" class="product-link">
-                
-                <!-- Ảnh sản phẩm -->
-                <div class="product-image">
-                  <img src="<?= $image_path ?>" 
-                       alt="<?= htmlspecialchars($row['prd_name']) ?>" 
-                       onerror="this.src='admin/assets/images/xe9.jpg';">
-                </div>
-                
-                <!-- Thông tin sản phẩm -->
-                <div class="product-info">
-                  <div class="product-category"><?= htmlspecialchars($row['cate_name']) ?></div>
-                  <h3 class="product-name"><?= htmlspecialchars($row['prd_name']) ?></h3>
-                  
-                  <div class="product-price">
-                    <span class="current-price"><?= number_format($row['prd_price'], 0, ',', '.') ?>đ</span>
+              <div class="product-card fade-up">
+                <!-- Link đến chi tiết sản phẩm -->
+                <a href="index.php?page=product-detail&prd_id=<?= $row['prd_id'] ?>" class="product-link">
+
+                  <!-- Ảnh sản phẩm -->
+                  <div class="product-image">
+                    <img src="<?= $image_path ?>"
+                      alt="<?= htmlspecialchars($row['prd_name']) ?>"
+                      onerror="this.src='admin/assets/images/xe9.jpg';">
                   </div>
+
+                  <!-- Thông tin sản phẩm -->
+                  <div class="product-info">
+                    <div class="product-category"><?= htmlspecialchars($row['cate_name']) ?></div>
+                    <h3 class="product-name"><?= htmlspecialchars($row['prd_name']) ?></h3>
+
+                    <div class="product-price">
+                      <span class="current-price"><?= number_format($row['prd_price'], 0, ',', '.') ?>đ</span>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- Nút thêm vào giỏ hàng -->
+                <div class="product-actions">
+                  <form method="post" action="add_cart.php">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="prd_id" value="<?= $row['prd_id'] ?>">
+                    <input type="hidden" name="prd_quantity" value="1">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                      <i class="fas fa-shopping-cart"></i> Mua ngay
+                    </button>
+                  </form>
                 </div>
-              </a>
-              
-              <!-- Nút thêm vào giỏ hàng -->
-              <div class="product-actions">
-                <form method="post" action="add_cart.php">
-                  <input type="hidden" name="action" value="add">
-                  <input type="hidden" name="prd_id" value="<?= $row['prd_id'] ?>">
-                  <input type="hidden" name="prd_quantity" value="1">
-                  <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fas fa-shopping-cart"></i> Mua ngay
-                  </button>
-                </form>
               </div>
-            </div>
-          <?php 
-              }
+          <?php
+            }
           } else {
-              echo '<div class="no-products">Không tìm thấy sản phẩm nào.</div>';
+            echo '<div class="no-products">Không tìm thấy sản phẩm nào.</div>';
           }
           ?>
         </div>
 
         <!-- Phân trang -->
         <?php if ($total_pages > 1): ?>
-        <div class="pagination-wrapper">
-          <div class="pagination">
-            <?php if ($page > 1): ?>
-              <a href="?p=<?php echo $page - 1; ?>" class="page-link prev">
-                <i class="fas fa-chevron-left"></i> Trang trước
-              </a>
-            <?php endif; ?>
-            
-            <?php
-            // Hiển thị số trang
-            $start_page = max(1, $page - 2);
-            $end_page = min($total_pages, $page + 2);
-            
-            for ($i = $start_page; $i <= $end_page; $i++) {
+          <div class="pagination-wrapper">
+            <div class="pagination">
+              <?php if ($page > 1): ?>
+                <a href="?p=<?php echo $page - 1; ?>" class="page-link prev">
+                  <i class="fas fa-chevron-left"></i> Trang trước
+                </a>
+              <?php endif; ?>
+
+              <?php
+              // Hiển thị số trang
+              $start_page = max(1, $page - 2);
+              $end_page = min($total_pages, $page + 2);
+
+              for ($i = $start_page; $i <= $end_page; $i++) {
                 $active_class = ($i == $page) ? 'active' : '';
                 echo '<a href="?p=' . $i . '" class="page-link ' . $active_class . '">' . $i . '</a>';
+              }
+              ?>
+
+              <?php if ($page < $total_pages): ?>
+                <a href="?p=<?php echo $page + 1; ?>" class="page-link next">
+                  Trang sau <i class="fas fa-chevron-right"></i>
+                </a>
+              <?php endif; ?>
+            </div>
+          </div>
+          <!-- End Add Product -->
+
+          <div class="pagination" id="pagination">
+            <?php
+            // Nút "Trang trước" (Chỉ hiện khi không phải trang 1)
+            if ($page > 1) {
+              $prev_page = $page - 1;
+              echo '<a href="index.php?page=products&p=' . $prev_page . '" class="page-btn" style="text-decoration:none;"><i class="fas fa-chevron-left"></i></a>';
+            }
+
+            // Vòng lặp in ra các số trang
+            for ($i = 1; $i <= $total_page; $i++) {
+              if ($i == $page) {
+                // Tô đậm/đánh dấu trang hiện tại (active)
+                echo '<a href="index.php?page=products&p=' . $i . '" class="page-btn active" style="text-decoration:none;">' . $i . '</a>';
+              } else {
+                // Các trang khác
+                echo '<a href="index.php?page=products&p=' . $i . '" class="page-btn" style="text-decoration:none;">' . $i . '</a>';
+              }
+            }
+
+            // Nút "Trang sau" (Chỉ hiện khi chưa tới trang cuối)
+            if ($page < $total_page) {
+              $next_page = $page + 1;
+              echo '<a href="index.php?page=products&p=' . $next_page . '" class="page-btn" style="text-decoration:none;"><i class="fas fa-chevron-right"></i></a>';
             }
             ?>
-            
-            <?php if ($page < $total_pages): ?>
-              <a href="?p=<?php echo $page + 1; ?>" class="page-link next">
-                Trang sau <i class="fas fa-chevron-right"></i>
-              </a>
-            <?php endif; ?>
           </div>
-        </div>
         <?php endif; ?>
+      </div>
     </div>
-  </div>
   </div>
 </section>
 
 <script src="js/common.js"></script>
 <script src="js/products.js"></script>
 </body>
+
 </html>
