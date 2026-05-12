@@ -23,8 +23,8 @@ if(isset($_GET['prd_id'])){
 <section class="section">
   <div class="container">
     <div class="breadcrumb" style="margin-bottom:2rem;">
-      <a href="index.html">Trang chủ</a><span>/</span>
-      <a href="products.html">Sản phẩm</a><span>/</span>
+      <a href="index.php">Trang chủ</a><span>/</span>
+      <a href="index.php?page=products">Sản phẩm</a><span>/</span>
       <span id="pdBreadcrumb">Chi tiết sản phẩm</span>
     </div>
 
@@ -66,7 +66,7 @@ if(isset($_GET['prd_id'])){
           </div>
         </div>
 
-        <div class="pd-size">
+        <!-- <div class="pd-size">
           <h4>Cỡ bánh xe:</h4>
           <div class="size-options">
             <button class="size-opt active" onclick="selectSize(this)">12"</button>
@@ -74,29 +74,33 @@ if(isset($_GET['prd_id'])){
             <button class="size-opt" onclick="selectSize(this)">16"</button>
             <button class="size-opt" onclick="selectSize(this)">20"</button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="pd-qty">
-          <h4>Số lượng:</h4>
-          <div class="qty-control">
-            <button onclick="changeQty(-1)">−</button>
-            <input type="number" value="1" min="1" max="10" id="qtyInput" />
-            <button onclick="changeQty(1)">+</button>
-          </div>
-          <span class="stock-info">✅ Còn hàng</span>
-        </div>
+        <form action="add_cart.php" method="post" id="addCartForm">
+  <input type="hidden" name="action" value="add">
+  <input type="hidden" name="prd_id" value="<?= $product['prd_id'] ?>">
+  <div class="pd-qty">
+    <h4>Số lượng:</h4>
+    <div class="qty-control">
+      <button type="button" onclick="changeQty(-1)">−</button>
+      <input type="number" name="prd_quantity" value="1" min="1" max="<?= $product['prd_quantity'] ?>" id="qtyInput" />
+      <button type="button" onclick="changeQty(1)">+</button>
+    </div>
+    <span class="stock-info">✅ Còn hàng</span>
+  </div>
 
-        <div class="pd-actions">
-          <button class="btn btn-primary btn-lg" onclick="handleAddToCart()">
-            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
-          </button>
-          <button class="btn btn-secondary btn-lg" onclick="handleBuyNow()">
-            <i class="fas fa-bolt"></i> Mua ngay
-          </button>
-          <button class="btn-wish" id="wishBtn" onclick="handleWish()">
-            <i class="fas fa-heart"></i>
-          </button>
-        </div>
+  <div class="pd-actions">
+    <button type="submit" class="btn btn-primary btn-lg">
+      <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+    </button>
+    <button class="btn btn-secondary btn-lg" onclick="handleBuyNow(<?= $product['prd_id'] ?>)">
+      <i class="fas fa-bolt"></i> Mua ngay
+    </button>
+    <button class="btn-wish" id="wishBtn" onclick="handleWish()">
+      <i class="fas fa-heart"></i>
+    </button>
+  </div>
+</form>
 
         <div class="pd-guarantees">
           <div class="guarantee-item"><i class="fas fa-shield-alt"></i> Bảo hành 24 tháng</div>
@@ -182,6 +186,34 @@ if(isset($_GET['prd_id'])){
 
 
 <script src="js/common.js"></script>
-<script src="js/product-detail.js"></script>
-</body>
+<script>
+function handleBuyNow(prd_id) {
+  const qty = document.getElementById('qtyInput').value;
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'add_cart.php';
+  
+  const actionInput = document.createElement('input');
+  actionInput.type = 'hidden';
+  actionInput.name = 'action';
+  actionInput.value = 'add';
+  form.appendChild(actionInput);
+  
+  const idInput = document.createElement('input');
+  idInput.type = 'hidden';
+  idInput.name = 'prd_id';
+  idInput.value = prd_id;
+  form.appendChild(idInput);
+  
+  const qtyInput = document.createElement('input');
+  qtyInput.type = 'hidden';
+  qtyInput.name = 'prd_quantity';
+  qtyInput.value = qty;
+  form.appendChild(qtyInput);
+  
+  document.body.appendChild(form);
+  form.submit();
+}
+</script>
 
+</body>

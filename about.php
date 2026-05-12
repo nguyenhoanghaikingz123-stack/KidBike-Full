@@ -3,7 +3,7 @@
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Giới thiệu</div>
+    <div class="breadcrumb"><a href="index.php">Trang chủ</a><span>/</span>Giới thiệu</div>
     <h1>Về chúng <span style="color:var(--primary)">tôi</span> 🏅</h1>
     <p>Hành trình 10 năm mang niềm vui đạp xe đến với hàng chục nghìn trẻ em Việt Nam</p>
   </div>

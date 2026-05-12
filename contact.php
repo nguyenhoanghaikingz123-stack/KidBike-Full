@@ -2,7 +2,7 @@
 
 <div class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Trang chủ</a><span>/</span>Liên hệ</div>
+    <div class="breadcrumb"><a href="index.php">Trang chủ</a><span>/</span>Liên hệ</div>
     <h1>Liên hệ <span style="color:var(--primary)">với chúng tôi</span> 📞</h1>
     <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn 24/7</p>
   </div>

@@ -82,7 +82,7 @@
       <h2>Không tìm thấy kết quả</h2>
       <p>Thử tìm với từ khóa khác hoặc xem tất cả sản phẩm của chúng tôi</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
-        <a href="products.html" class="btn btn-primary">Xem tất cả sản phẩm</a>
+        <a href="products.php" class="btn btn-primary">Xem tất cả sản phẩm</a>
         <button class="btn btn-outline" onclick="clearSearch()">Tìm kiếm lại</button>
       </div>
     </div>
