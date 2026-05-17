@@ -32,30 +32,31 @@
       <h2>Đăng nhập</h2>
       <p class="subtitle">Nhập thông tin để truy cập</p>
 
-      <div class="form-group">
-        <label>Email</label>
-        <div class="input-wrap">
-          <input type="email" placeholder="nguyenvanA@kidbike.vn" />
-          <i class="bx bx-envelope"></i>
+      <form method="POST">
+        <div class="form-group">
+          <label>Email</label>
+          <div class="input-wrap">
+            <input type="email" placeholder="nguyenvanA@kidbike.vn" />
+            <i class="bx bx-envelope"></i>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Mật khẩu</label>
-        <div class="input-wrap">
-          <input type="password" placeholder="••••••••" />
-          <i class="bx bx-lock-alt"></i>
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <div class="input-wrap">
+            <input type="password" placeholder="••••••••" />
+            <i class="bx bx-lock-alt"></i>
+          </div>
         </div>
-      </div>
 
-      <button class="btn-submit" onclick="window.location.href='index.php'">
-        <i class="bx bx-log-in"></i> Đăng nhập
-      </button>
-      <div class="form-switch">
-        Chưa có tài khoản?
-        <a onclick="switchForm('register-form')">Đăng ký ngay</a>
-      </div>
+        <button class="btn-submit" onclick="window.location.href='index.php'">
+          <i class="bx bx-log-in"></i> Đăng nhập
+        </button>
+        <div class="form-switch">
+          Chưa có tài khoản?
+          <a onclick="switchForm('register-form')">Đăng ký ngay</a>
+        </div>
     </div>
-
+    </form>
     <!-- REGISTER FORM -->
     <div class="form-panel" id="register-form">
       <h2>Đăng ký tài khoản</h2>

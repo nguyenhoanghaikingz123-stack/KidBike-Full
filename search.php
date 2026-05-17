@@ -40,7 +40,7 @@ $count_results = mysqli_num_rows($query_search)
           value="<?= htmlspecialchars($keyword) ?>"
           placeholder="Tìm kiếm xe đạp trẻ em..."
           autofocus>
-        <!-- Nút xóa nhanh từ khóa (dùng JS nhỏ gọn) -->
+        <!-- Nút xóa nhanh từ khóa -->
 
         <a href="index.php?page=search" class="search-clear" style="display:flex;">
           <i class="fas fa-times"></i>

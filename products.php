@@ -3,6 +3,8 @@
 // 1.Xac dinh so luong ban ghi hien thi tren 1 trang
 $row_per_page = 12;
 // 2.Tinh vi tri lay ban ghi dau
+include_once(__DIR__ . "/admin/connect.php"); // Ensure the connection is established first
+
 // 2.1 dem tong so ban ghi trong csdl
 $total_row = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tbl_product 
             JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id"));
@@ -446,6 +448,3 @@ $q_prd = mysqli_query($connect, $s_prd);
 
 <script src="js/common.js"></script>
 <script src="js/products.js"></script>
-</body>
-
-</html>

@@ -79,6 +79,8 @@ include_once('admin/connect.php');
 
   <script src="js/common.js"></script>
   <script src="js/home.js"></script>
+  <script src="js/products.js"></script> <!-- thêm dòng này -->
+</body>
 </body>
 
 </html>s

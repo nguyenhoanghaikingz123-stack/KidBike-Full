@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/order-success.css">
 </head>
+
 <body>
     <!-- Header -->
     <?php include_once('master/header.php'); ?>
-    
+
     <!-- Page Hero -->
     <div class="page-hero">
         <div class="container">
@@ -30,18 +31,15 @@
             <div class="success-icon">
                 <i class="fas fa-check"></i>
             </div>
-            
+
             <h2 class="success-title">Đặt hàng thành công!</h2>
-            
-            <p class="success-message">
-                Cảm ơn <strong><?= htmlspecialchars($order_info['customer_name']) ?></strong> đã đặt hàng tại KidBike Shop.<br>
-                Chúng tôi sẽ liên hệ với bạn qua email <strong><?= htmlspecialchars($order_info['customer_email']) ?></strong> để xác nhận đơn hàng.
-            </p>
-            
+
             <div class="order-info">
                 <div class="order-info-item">
                     <span class="order-info-label">Mã đơn hàng:</span>
-                    <span class="order-info-value">#<?= str_pad($order_info['order_id'], 6, '0', STR_PAD_LEFT) ?></span>
+                    <?php
+                    $order_info = $order_info ?? ['order_id' => 0, 'total_amount' => 0]; // Initialize with default values
+                    ?>
                 </div>
                 <div class="order-info-item">
                     <span class="order-info-label">Tổng tiền:</span>
@@ -56,7 +54,7 @@
                     <span class="order-info-value"><?= date('H:i - d/m/Y') ?></span>
                 </div>
             </div>
-            
+
             <div class="action-buttons">
                 <a href="index.php" class="btn btn-primary">
                     <i class="fas fa-home"></i>
@@ -73,4 +71,5 @@
     <!-- Footer -->
     <?php include_once('master/footer.php'); ?>
 </body>
+
 </html>

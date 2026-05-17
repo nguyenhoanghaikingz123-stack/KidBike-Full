@@ -1,5 +1,6 @@
 <?php
 // Lấy prd_id từ URL
+include_once('admin/connect.php');
 if (isset($_GET['prd_id'])) {
   $prd_id = intval($_GET['prd_id']);
   $s_product = "SELECT * FROM tbl_product
