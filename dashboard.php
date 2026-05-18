@@ -5,6 +5,10 @@ $s_featured = "SELECT * FROM tbl_product
                  JOIN tbl_category ON tbl_product.cate_id = tbl_category.cate_id
                  ORDER BY prd_id DESC LIMIT 4";
 $q_featured = mysqli_query($connect, $s_featured);
+
+$product_count_sql = "SELECT * FROM tbl_product";
+$product_count_query = mysqli_query($connect, $product_count_sql);
+
 ?>
 
 
@@ -33,7 +37,7 @@ $q_featured = mysqli_query($connect, $s_featured);
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <strong>500+</strong>
+          <strong><?= mysqli_num_rows($product_count_query); ?></strong>
           <span>Sản phẩm</span>
         </div>
         <div class="stat-divider"></div>
@@ -289,30 +293,6 @@ $q_featured = mysqli_query($connect, $s_featured);
             <span>Đà Nẵng · Mẹ bé 9 tuổi</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== NEWSLETTER ===== -->
-<section class="newsletter section">
-  <div class="container">
-    <div class="newsletter-inner fade-up">
-      <div class="newsletter-content">
-        <h2>Đăng ký nhận <span>ưu đãi</span> mới nhất</h2>
-        <p>
-          Nhận thông báo về sản phẩm mới và các chương trình khuyến mãi đặc
-          biệt
-        </p>
-      </div>
-      <div class="newsletter-form">
-        <input
-          type="email"
-          placeholder="Email của bạn..."
-          id="newsletterEmail" />
-        <button class="btn btn-primary" onclick="handleNewsletter()">
-          Đăng ký
-        </button>
       </div>
     </div>
   </div>

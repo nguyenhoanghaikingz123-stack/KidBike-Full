@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once('admin/connect.php');
 
 $s_cate = "SELECT * FROM tbl_category ORDER BY cate_id ASC LIMIT 4";
@@ -9,9 +8,18 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
 // Tính số lượng sản phẩm trong giỏ hàng
 $cart_count = 0;
-if (isset($_SESSION['cart'])) {
+
+if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+
   foreach ($_SESSION['cart'] as $item) {
-    $cart_count += $item['prd_quantity'];
+
+    if (is_array($item) && isset($item['prd_quantity'])) {
+
+      $cart_count += (int)$item['prd_quantity'];
+    } else {
+
+      $cart_count += 1;
+    }
   }
 }
 ?>
