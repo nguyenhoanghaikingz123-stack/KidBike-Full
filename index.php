@@ -20,6 +20,10 @@ include_once('admin/connect.php');
   <link rel="stylesheet" href="css/products.css" />
   <link rel="stylesheet" href="css/search.css" />
   <link rel="stylesheet" href="css/product-detail.css" />
+  <link rel="stylesheet" href="css/checkout_success.css" />
+  <link rel="stylesheet" href="css/order-success.css">
+  <link rel="stylesheet" href="css/delivery_order.css" />
+  <link rel="stylesheet" href="css/cancelled_order.css" />
 
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="../KidBike-Full/css/cart.css" />

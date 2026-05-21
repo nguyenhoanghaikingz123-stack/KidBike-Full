@@ -11,65 +11,64 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <?php include_once('master/header.php'); ?>
+    <div class="order-success-page">
+        <!-- Page Hero -->
+        <div class="page-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.php">Trang chủ</a><span>/</span><a href="index.php?page=cart">Giỏ hàng</a><span>/</span>Đặt hàng thành công
+                </div>
+                <h1>Đặt hàng <span style="color: var(--primary)">thành công</span> 🎉</h1>
+                <p>Cảm ơn bạn đã tin tưởng và mua hàng</p>
+            </div>
+        </div>
 
-    <!-- Page Hero -->
-    <div class="page-hero">
+        <!-- Success Content -->
         <div class="container">
-            <div class="breadcrumb">
-                <a href="index.php">Trang chủ</a><span>/</span><a href="index.php?page=cart">Giỏ hàng</a><span>/</span>Đặt hàng thành công
-            </div>
-            <h1>Đặt hàng <span style="color: var(--primary)">thành công</span> 🎉</h1>
-            <p>Cảm ơn bạn đã tin tưởng và mua hàng</p>
-        </div>
-    </div>
-
-    <!-- Success Content -->
-    <div class="container">
-        <div class="success-container">
-            <div class="success-icon">
-                <i class="fas fa-check"></i>
-            </div>
-
-            <h2 class="success-title">Đặt hàng thành công!</h2>
-
-            <div class="order-info">
-                <div class="order-info-item">
-                    <span class="order-info-label">Mã đơn hàng:</span>
-                    <?php
-                    $order_info = $order_info ?? ['order_id' => 0, 'total_amount' => 0]; // Initialize with default values
-                    ?>
+            <div class="success-container">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
                 </div>
-                <div class="order-info-item">
-                    <span class="order-info-label">Tổng tiền:</span>
-                    <span class="order-info-value"><?= number_format($order_info['total_amount'], 0, ',', '.') ?>₫</span>
-                </div>
-                <div class="order-info-item">
-                    <span class="order-info-label">Trạng thái:</span>
-                    <span class="order-info-value" style="color: #4CAF50;">Đang chờ xử lý</span>
-                </div>
-                <div class="order-info-item">
-                    <span class="order-info-label">Thời gian đặt:</span>
-                    <span class="order-info-value"><?= date('H:i - d/m/Y') ?></span>
-                </div>
-            </div>
 
-            <div class="action-buttons">
-                <a href="index.php" class="btn btn-primary">
-                    <i class="fas fa-home"></i>
-                    Về trang chủ
-                </a>
-                <a href="index.php?page=products" class="btn btn-secondary">
-                    <i class="fas fa-shopping-bag"></i>
-                    Tiếp tục mua sắm
-                </a>
+                <h2 class="success-title">Đặt hàng thành công!</h2>
+
+                <div class="order-info">
+                    <div class="order-info-item">
+                        <span class="order-info-label">Mã đơn hàng:</span>
+                        <?php
+                        $order_info = $order_info ?? ['order_id' => 0, 'total_amount' => 0]; // Initialize with default values
+                        ?>
+                    </div>
+                    <div class="order-info-item">
+                        <span class="order-info-label">Tổng tiền:</span>
+                        <span class="order-info-value"><?= number_format($order_info['total_amount'], 0, ',', '.') ?>₫</span>
+                    </div>
+                    <div class="order-info-item">
+                        <span class="order-info-label">Trạng thái:</span>
+                        <span class="order-info-value" style="color: #4CAF50;">Đang chờ xử lý</span>
+                    </div>
+                    <div class="order-info-item">
+                        <span class="order-info-label">Thời gian đặt:</span>
+                        <span class="order-info-value"><?= date('H:i - d/m/Y') ?></span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="index.php" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        Về trang chủ
+                    </a>
+                    <a href="index.php?page=products" class="btn btn-secondary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Tiếp tục mua sắm
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <?php include_once('master/footer.php'); ?>
+        <!-- Footer -->
+        <?php include_once('master/footer.php'); ?>
+    </div>
 </body>
 
 </html>

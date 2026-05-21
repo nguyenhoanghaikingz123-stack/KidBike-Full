@@ -1,302 +1,293 @@
 /**
  * ORDER SUCCESS PAGE STYLES
- * File CSS riêng cho trang cảm ơn đơn hàng
- * Author: Senior Fullstack Developer
+ * Scoped version để tránh xung đột CSS
  */
 
+/* ===== MAIN PAGE ===== */
+
+.order-success-page {
+  background: #f8f9fa;
+  padding: 60px 0;
+}
+
 /* ===== SUCCESS CONTAINER ===== */
-.success-container {
-    max-width: 600px;
-    margin: 100px auto;
-    text-align: center;
-    padding: 40px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+
+.order-success-page .success-container {
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.6s ease;
 }
 
 /* ===== SUCCESS ICON ===== */
-.success-icon {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 30px;
-    animation: scaleIn 0.5s ease;
-    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+
+.order-success-page .success-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  animation: scaleIn 0.5s ease;
+  box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
 }
 
-.success-icon i {
-    color: white;
-    font-size: 50px;
+.order-success-page .success-icon i {
+  color: white;
+  font-size: 50px;
 }
 
 /* ===== SUCCESS TITLE ===== */
-.success-title {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 700;
-    line-height: 1.2;
+
+.order-success-page .success-title {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 /* ===== SUCCESS MESSAGE ===== */
-.success-message {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 30px;
-    line-height: 1.6;
+
+.order-success-page .success-message {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
-.success-message strong {
-    color: #333;
+.order-success-page .success-message strong {
+  color: #333;
 }
 
 /* ===== ORDER INFO ===== */
-.order-info {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    text-align: left;
-    border: 1px solid #e9ecef;
+
+.order-success-page .order-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: left;
+  border: 1px solid #e9ecef;
 }
 
-.order-info-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
+.order-success-page .order-info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
 }
 
-.order-info-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+.order-success-page .order-info-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.order-info-label {
-    font-weight: 600;
-    color: #333;
+.order-success-page .order-info-label {
+  font-weight: 600;
+  color: #333;
 }
 
-.order-info-value {
-    color: #666;
+.order-success-page .order-info-value {
+  color: #666;
 }
 
-.order-info-value[style*="color: #4CAF50"] {
-    color: var(--primary, #4CAF50) !important;
-    font-weight: 600;
+.order-success-page .order-info-value[style*="color: #4CAF50"] {
+  color: var(--primary, #4caf50) !important;
+  font-weight: 600;
 }
 
 /* ===== ACTION BUTTONS ===== */
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+
+.order-success-page .action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.btn {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: inherit;
-    min-width: 150px;
-    justify-content: center;
+.order-success-page .btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: inherit;
+  min-width: 150px;
+  justify-content: center;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
+.order-success-page .btn-primary {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
+.order-success-page .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
 }
 
-.btn-secondary {
-    background: #f8f9fa;
-    color: #333;
-    border: 2px solid #e0e0e0;
+.order-success-page .btn-secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 2px solid #e0e0e0;
 }
 
-.btn-secondary:hover {
-    background: #e9ecef;
-    border-color: #ccc;
-    transform: translateY(-2px);
+.order-success-page .btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #ccc;
+  transform: translateY(-2px);
 }
 
 /* ===== ANIMATIONS ===== */
+
 @keyframes scaleIn {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.success-container {
-    animation: fadeInUp 0.6s ease;
-}
+/* ===== RESPONSIVE ===== */
 
-.success-icon {
-    animation-delay: 0.2s;
-}
-
-.success-title {
-    animation-delay: 0.3s;
-}
-
-.success-message {
-    animation-delay: 0.4s;
-}
-
-.order-info {
-    animation-delay: 0.5s;
-}
-
-.action-buttons {
-    animation-delay: 0.6s;
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    .success-container {
-        margin: 50px 20px;
-        padding: 30px 20px;
-    }
-    
-    .success-title {
-        font-size: 28px;
-    }
-    
-    .success-message {
-        font-size: 16px;
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .order-info {
-        padding: 15px;
-    }
-    
-    .order-info-item {
-        font-size: 13px;
-    }
+  .order-success-page .success-container {
+    margin: 50px 20px;
+    padding: 30px 20px;
+  }
+
+  .order-success-page .success-title {
+    font-size: 28px;
+  }
+
+  .order-success-page .success-message {
+    font-size: 16px;
+  }
+
+  .order-success-page .action-buttons {
+    flex-direction: column;
+  }
+
+  .order-success-page .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .order-success-page .order-info {
+    padding: 15px;
+  }
+
+  .order-success-page .order-info-item {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 480px) {
-    .success-container {
-        margin: 30px 15px;
-        padding: 25px 15px;
-    }
-    
-    .success-icon {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 20px;
-    }
-    
-    .success-icon i {
-        font-size: 40px;
-    }
-    
-    .success-title {
-        font-size: 24px;
-    }
-    
-    .success-message {
-        font-size: 15px;
-    }
-    
-    .btn {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
+  .order-success-page .success-container {
+    margin: 30px 15px;
+    padding: 25px 15px;
+  }
+
+  .order-success-page .success-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  .order-success-page .success-icon i {
+    font-size: 40px;
+  }
+
+  .order-success-page .success-title {
+    font-size: 24px;
+  }
+
+  .order-success-page .success-message {
+    font-size: 15px;
+  }
+
+  .order-success-page .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
 
 /* ===== ACCESSIBILITY ===== */
-.btn:focus {
-    outline: 2px solid var(--primary, #4CAF50);
-    outline-offset: 2px;
+
+.order-success-page .btn:focus {
+  outline: 2px solid var(--primary, #4caf50);
+  outline-offset: 2px;
 }
 
-.btn:hover:focus {
-    outline: 2px solid var(--primary, #4CAF50);
-    outline-offset: 2px;
-}
+/* ===== PRINT ===== */
 
-/* ===== PRINT STYLES ===== */
 @media print {
-    .action-buttons {
-        display: none;
-    }
-    
-    .success-container {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
+  .order-success-page .action-buttons {
+    display: none;
+  }
+
+  .order-success-page .success-container {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
 }
 
-/* ===== DARK MODE SUPPORT ===== */
+/* ===== DARK MODE ===== */
+
 @media (prefers-color-scheme: dark) {
-    .success-container {
-        background: #2d3748;
-        color: #e2e8f0;
-    }
-    
-    .success-title {
-        color: #e2e8f0;
-    }
-    
-    .order-info {
-        background: #4a5568;
-        border-color: #718096;
-    }
-    
-    .order-info-label {
-        color: #e2e8f0;
-    }
-    
-    .btn-secondary {
-        background: #4a5568;
-        color: #e2e8f0;
-        border-color: #718096;
-    }
+  .order-success-page .success-container {
+    background: #2d3748;
+    color: #e2e8f0;
+  }
+
+  .order-success-page .success-title {
+    color: #e2e8f0;
+  }
+
+  .order-success-page .order-info {
+    background: #4a5568;
+    border-color: #718096;
+  }
+
+  .order-success-page .order-info-label {
+    color: #e2e8f0;
+  }
+
+  .order-success-page .btn-secondary {
+    background: #4a5568;
+    color: #e2e8f0;
+    border-color: #718096;
+  }
 }
