@@ -1,3 +1,8 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 /* DELIVERY ORDER PAGE */
 
 .delivery-order-page * {
@@ -11,6 +16,7 @@
   background: #f4f7fb;
   color: #1e293b;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 .delivery-order-page a {
@@ -30,6 +36,7 @@
   color: white;
   padding: 80px 0;
   text-align: center;
+  margin-top: 0;
 }
 
 .delivery-order-page .hero i {

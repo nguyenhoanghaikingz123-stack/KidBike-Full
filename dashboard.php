@@ -220,28 +220,6 @@ $product_count_query = mysqli_query($connect, $product_count_sql);
   </div>
 </section>
 
-<!-- ===== BANNER PROMO ===== -->
-<section class="promo-banner fade-up">
-  <div class="container">
-    <div class="promo-inner">
-      <div class="promo-content">
-        <div
-          class="section-tag"
-          style="background: rgba(255, 255, 255, 0.2); color: white">
-          🎉 Ưu đãi đặc biệt
-        </div>
-        <h2>Giảm đến <span>40%</span> cho đơn đầu tiên!</h2>
-        <p>
-          Nhập mã <strong>KIDSBIKE2025</strong> khi thanh toán để nhận ưu
-          đãi độc quyền
-        </p>
-        <a href="index.php?page=products" class="btn btn-white">Mua ngay <i class="fas fa-tag"></i></a>
-      </div>
-      <div class="promo-visual">🎁🚲🎉</div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== TESTIMONIALS ===== -->
 <section class="section testimonials">
   <div class="container">

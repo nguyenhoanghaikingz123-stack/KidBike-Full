@@ -24,6 +24,7 @@ include_once('admin/connect.php');
   <link rel="stylesheet" href="css/order-success.css">
   <link rel="stylesheet" href="css/delivery_order.css" />
   <link rel="stylesheet" href="css/cancelled_order.css" />
+  <link rel="stylesheet" href="css/pending_order.css">
 
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="../KidBike-Full/css/cart.css" />
